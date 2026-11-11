@@ -1,0 +1,1107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dia:diagram xmlns:dia="http://www.lysator.liu.se/~alla/dia/">
+  <dia:diagramdata>
+    <dia:attribute name="background"><dia:color val="#ffffff"/></dia:attribute>
+  </dia:diagramdata>
+  <dia:layer name="Modelo UML CALJIM" visible="true" active="true">
+    <dia:object type="UML - Class" version="0" id="O0">
+      <dia:attribute name="obj_pos"><dia:point val="2,2"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#Usuario#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#Entity / RBAC#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#nombre_completo#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(120)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#email#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(100) [UNIQUE]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#password#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(255)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#rol#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('admin','operario','cliente')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#cedula_ruc#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(20)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#telefono#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(20)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#direccion#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(200)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#licencia_conducir#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(30) [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#tarifa_hora#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(8,2) [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#estado#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#BOOLEAN#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#autenticar#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#verificarRol#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#listarPedidos#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O1">
+      <dia:attribute name="obj_pos"><dia:point val="22,2"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#Material#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-01, RF-02#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#codigo#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(20) [UNIQUE]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#nombre#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(100)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#descripcion#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#TEXT#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#imagen_url#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(255)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#precio_m3#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#stock_m3#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#stock_minimo_m3#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#disponible#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#BOOLEAN#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#actualizarStock#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#calcularSubtotalM3#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O2">
+      <dia:attribute name="obj_pos"><dia:point val="42,2"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#Pedido#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-03#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#codigo_pedido#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(30) [UNIQUE]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#cliente_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#operario_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#maquinaria_transporte_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Maquinaria]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_pedido#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATETIME#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_entrega_estimada#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATETIME#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#direccion_entrega#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(255)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#latitud_destino#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,7)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#longitud_destino#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,7)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#costo_flete#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#estado#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('solicitado','confirmado','cargado','en_transito','entregado')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#cambiarEstado#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#asignarConductor#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#calcularTotales#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O3">
+      <dia:attribute name="obj_pos"><dia:point val="64,2"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#Factura#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-11, RF-12#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#numero_factura#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(40) [UNIQUE]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#pedido_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Pedido] [UNIQUE]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_emision#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATETIME#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#subtotal_materiales#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#subtotal_maquinaria#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#costo_flete#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#porcentaje_iva#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(5,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#monto_iva#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#total_pagar#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#pdf_url#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(255)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#estado_pago#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('pendiente','pagada','anulada')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#generarPdfDompdf#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#calcularIva#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O4">
+      <dia:attribute name="obj_pos"><dia:point val="22,16"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#DetallePedidoMaterial#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-02#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#pedido_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Pedido]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#material_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Material]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#volumen_m3#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#precio_unitario_m3#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#subtotal#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#calcularSubtotal#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O5">
+      <dia:attribute name="obj_pos"><dia:point val="42,16"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#DetallePedidoMaquinaria#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-06, RF-11#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#pedido_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Pedido]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#maquinaria_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Maquinaria]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#operario_asignado_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#horas_alquiler#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(8,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#tarifa_hora#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#subtotal#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#calcularSubtotalAlquiler#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O6">
+      <dia:attribute name="obj_pos"><dia:point val="64,16"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#Maquinaria#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-06#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#codigo_placa#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(30) [UNIQUE]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#nombre#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(100)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#tipo#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('volqueta','excavadora','cargadora','retroexcavadora')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#marca_modelo#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(100)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#capacidad_m3#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(8,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#tarifa_hora_alquiler#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#horometro_actual#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#proximo_mantenimiento_hrs#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#estado#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('disponible','alquilado','en_ruta','en_mantenimiento')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#cambiarEstado#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#actualizarHorometro#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#requiereMantenimiento#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O7">
+      <dia:attribute name="obj_pos"><dia:point val="64,30"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#Mantenimiento#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-07#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#maquinaria_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Maquinaria]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#responsable_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#tipo#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('preventivo','correctivo')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_programada#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATE#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_realizada#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATE [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#horometro_registro#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#descripcion_trabajo#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#TEXT#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#repuestos_utilizados#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#TEXT#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#costo_total#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#estado#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('pendiente','en_proceso','completado')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#programarAlerta#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#finalizarMantenimiento#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O8">
+      <dia:attribute name="obj_pos"><dia:point val="42,30"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#UbicacionGps#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-04, RF-05#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#pedido_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Pedido] [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#maquinaria_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Maquinaria]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#operario_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#latitud#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,7)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#longitud#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,7)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#velocidad_kmh#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(6,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#en_parada#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#BOOLEAN#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_hora_registro#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATETIME#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#registrarCoordenada#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#obtenerRutaActiva#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O9">
+      <dia:attribute name="obj_pos"><dia:point val="2,16"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#JornadaLaboral#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-08#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#operario_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#pedido_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Pedido] [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATE#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#hora_entrada#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#TIME#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#hora_salida#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#TIME [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#horas_normales#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(5,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#horas_extra#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(5,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#observaciones#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(255)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#registrarEntrada#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#registrarSalida#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#calcularHoras#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O10">
+      <dia:attribute name="obj_pos"><dia:point val="2,30"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#LiquidacionNomina#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-09#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#operario_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#periodo_inicio#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATE#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#periodo_fin#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATE#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#total_horas_normales#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(6,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#total_horas_extra#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(6,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#monto_horas_normales#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#monto_horas_extra#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#deducciones#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#neto_pagar#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DECIMAL(10,2)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_pago#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATE [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#comprobante_pdf_url#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(255)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#calcularNetoPagar#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#emitirRolPagoPdf#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Class" version="0" id="O11">
+      <dia:attribute name="obj_pos"><dia:point val="22,30"/></dia:attribute>
+      <dia:attribute name="name"><dia:string>#MensajeInterno#</dia:string></dia:attribute>
+      <dia:attribute name="stereotype"><dia:string>#RF-10#</dia:string></dia:attribute>
+      <dia:attribute name="visible_attributes"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="visible_operations"><dia:boolean val="true"/></dia:attribute>
+      <dia:attribute name="attributes">
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [PK]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#remitente_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#destinatario_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Usuario]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#pedido_id#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#INT [FK -> Pedido] [NULL]#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#tipo#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#ENUM('tarea','cambio_ruta','incidencia_mecanica','general')#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#asunto#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#VARCHAR(150)#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#contenido#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#TEXT#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#leido#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#BOOLEAN#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umlattribute">
+          <dia:attribute name="name"><dia:string>#fecha_envio#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#DATETIME#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="operations">
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#enviarNotificacion#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name"><dia:string>#marcarComoLeido#</dia:string></dia:attribute>
+          <dia:attribute name="type"><dia:string>#void#</dia:string></dia:attribute>
+          <dia:attribute name="visibility"><dia:enum val="0"/></dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A0">
+      <dia:attribute name="name"><dia:string>#solicita / conduce#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="10,5"/>
+        <dia:point val="26,5"/>
+        <dia:point val="26,5"/>
+        <dia:point val="42,5"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O0" connection="8"/>
+        <dia:connection handle="1" to="O2" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A1">
+      <dia:attribute name="name"><dia:string>#genera#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..1#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="52,5"/>
+        <dia:point val="58,5"/>
+        <dia:point val="58,5"/>
+        <dia:point val="64,5"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O2" connection="8"/>
+        <dia:connection handle="1" to="O3" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A2">
+      <dia:attribute name="name"><dia:string>#contiene aridos#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="42,10"/>
+        <dia:point val="36,10"/>
+        <dia:point val="36,16"/>
+        <dia:point val="30,16"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O2" connection="8"/>
+        <dia:connection handle="1" to="O4" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A3">
+      <dia:attribute name="name"><dia:string>#se despacha en#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="26,10"/>
+        <dia:point val="26,10"/>
+        <dia:point val="26,16"/>
+        <dia:point val="26,16"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O1" connection="8"/>
+        <dia:connection handle="1" to="O4" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A4">
+      <dia:attribute name="name"><dia:string>#incluye alquiler#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="46,12"/>
+        <dia:point val="46,12"/>
+        <dia:point val="46,16"/>
+        <dia:point val="46,16"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O2" connection="8"/>
+        <dia:connection handle="1" to="O5" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A5">
+      <dia:attribute name="name"><dia:string>#es alquilada en#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="64,19"/>
+        <dia:point val="58,19"/>
+        <dia:point val="58,19"/>
+        <dia:point val="52,19"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O6" connection="8"/>
+        <dia:connection handle="1" to="O5" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A6">
+      <dia:attribute name="name"><dia:string>#recibe#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="68,24"/>
+        <dia:point val="68,24"/>
+        <dia:point val="68,30"/>
+        <dia:point val="68,30"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O6" connection="8"/>
+        <dia:connection handle="1" to="O7" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A7">
+      <dia:attribute name="name"><dia:string>#reporta GPS#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="64,24"/>
+        <dia:point val="57,24"/>
+        <dia:point val="57,30"/>
+        <dia:point val="50,30"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O6" connection="8"/>
+        <dia:connection handle="1" to="O8" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A8">
+      <dia:attribute name="name"><dia:string>#rastrea ruta#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#0..1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="46,24"/>
+        <dia:point val="46,24"/>
+        <dia:point val="46,30"/>
+        <dia:point val="46,30"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O2" connection="8"/>
+        <dia:connection handle="1" to="O8" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A9">
+      <dia:attribute name="name"><dia:string>#registra#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="6,12"/>
+        <dia:point val="6,12"/>
+        <dia:point val="6,16"/>
+        <dia:point val="6,16"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O0" connection="8"/>
+        <dia:connection handle="1" to="O9" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A10">
+      <dia:attribute name="name"><dia:string>#cobra#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="6,24"/>
+        <dia:point val="6,24"/>
+        <dia:point val="6,30"/>
+        <dia:point val="6,30"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O0" connection="8"/>
+        <dia:connection handle="1" to="O10" connection="8"/>
+      </dia:connections>
+    </dia:object>
+    <dia:object type="UML - Association" version="1" id="A11">
+      <dia:attribute name="name"><dia:string>#envia / recibe#</dia:string></dia:attribute>
+      <dia:attribute name="direction"><dia:enum val="0"/></dia:attribute>
+      <dia:attribute name="multipicity_a"><dia:string>#1#</dia:string></dia:attribute>
+      <dia:attribute name="multipicity_b"><dia:string>#0..*#</dia:string></dia:attribute>
+      <dia:attribute name="orth_points">
+        <dia:point val="10,24"/>
+        <dia:point val="16,24"/>
+        <dia:point val="16,30"/>
+        <dia:point val="22,30"/>
+      </dia:attribute>
+      <dia:attribute name="orth_orient">
+        <dia:enum val="0"/>
+        <dia:enum val="1"/>
+        <dia:enum val="0"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O0" connection="8"/>
+        <dia:connection handle="1" to="O11" connection="8"/>
+      </dia:connections>
+    </dia:object>
+  </dia:layer>
+</dia:diagram>
