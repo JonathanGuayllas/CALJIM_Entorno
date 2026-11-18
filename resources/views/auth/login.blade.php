@@ -39,6 +39,10 @@
                         <span>{{ $usuario->nombre_completo }}</span>
                         <span class="user-role-tag">{{ $usuario->rol }}</span>
                     </div>
+                    <a href="{{ route('inventario.index') }}" class="btn-login-primary">
+                        <span>Ir al Portal</span>
+                        <span>↗</span>
+                    </a>
                     <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                         @csrf
                         <button type="submit" class="btn-register-outline">Cerrar sesión</button>
@@ -250,41 +254,26 @@
                 </div>
 
                 <div class="materials-grid-4" data-node-id="53:497">
-                    <article class="material-dark-card" data-node-id="53:498">
-                        <div class="material-card-top">
-                            <div class="material-symbol-box">◈</div>
-                            <span class="material-sample-badge">Muestra</span>
-                        </div>
-                        <h3 class="material-dark-title">Arena de río</h3>
-                        <p class="material-dark-meta">86 m³ de referencia · cotiza disponibilidad</p>
-                    </article>
-
-                    <article class="material-dark-card" data-node-id="53:508">
-                        <div class="material-card-top">
-                            <div class="material-symbol-box">▧</div>
-                            <span class="material-sample-badge">Muestra</span>
-                        </div>
-                        <h3 class="material-dark-title">Lastre</h3>
-                        <p class="material-dark-meta">142 m³ de referencia · cotiza disponibilidad</p>
-                    </article>
-
-                    <article class="material-dark-card" data-node-id="53:518">
-                        <div class="material-card-top">
-                            <div class="material-symbol-box">◌</div>
-                            <span class="material-sample-badge">Muestra</span>
-                        </div>
-                        <h3 class="material-dark-title">Ripio</h3>
-                        <p class="material-dark-meta">72 m³ de referencia · cotiza disponibilidad</p>
-                    </article>
-
-                    <article class="material-dark-card" data-node-id="53:528">
-                        <div class="material-card-top">
-                            <div class="material-symbol-box">◇</div>
-                            <span class="material-sample-badge">Muestra</span>
-                        </div>
-                        <h3 class="material-dark-title">Piedra bola</h3>
-                        <p class="material-dark-meta">55 m³ de referencia · cotiza disponibilidad</p>
-                    </article>
+                    @php $simbolos = ['◈', '▧', '◌', '◇']; @endphp
+                    @forelse($materiales as $index => $mat)
+                        <article class="material-dark-card">
+                            <div class="material-card-top">
+                                <div class="material-symbol-box">{{ $simbolos[$index % 4] }}</div>
+                                <span class="material-sample-badge">{{ $mat->stock_m3 > 0 ? 'Disponible' : 'Agotado' }}</span>
+                            </div>
+                            <h3 class="material-dark-title">{{ $mat->nombre }}</h3>
+                            <p class="material-dark-meta">{{ number_format($mat->stock_m3, 0) }} m³ en stock · ${{ number_format($mat->precio_m3, 2) }}/m³</p>
+                        </article>
+                    @empty
+                        <article class="material-dark-card" data-node-id="53:498">
+                            <div class="material-card-top">
+                                <div class="material-symbol-box">◈</div>
+                                <span class="material-sample-badge">Disponible</span>
+                            </div>
+                            <h3 class="material-dark-title">Arena de río</h3>
+                            <p class="material-dark-meta">86 m³ en stock · $18.00/m³</p>
+                        </article>
+                    @endforelse
                 </div>
 
                 <p class="materials-disclaimer" data-node-id="53:539">
@@ -468,34 +457,40 @@
     <!-- ==================================================================
          MODAL DE LOGUEO Y CREAR CUENTA (Figma Nodes 58:1112 & 58:1244)
          ================================================================== -->
-    <div id="authModalBackdrop" class="auth-modal-backdrop {{ $mostrarModal ? '' : 'hidden' }}" onclick="cerrarModalSiFondo(event)">
+    <div id="authModalBackdrop" class="auth-modal-backdrop {{ $mostrarModal ? '' : 'hidden' }}">
         <div class="auth-card" data-node-id="58:1112">
             <!-- Encabezado y botón cerrar -->
             <div class="auth-header">
                 <div class="auth-title-wrap">
                     <h2 class="auth-title" id="authHeading">
-                        {{ $modoInicial === 'registro' ? 'Crea tu cuenta CALJIM' : 'Bienvenido a CALJIM' }}
+                        {{ $modoInicial === 'registro' ? 'Crea tu cuenta CALJIM' : ($modoInicial === 'recuperar' ? 'Recuperar contraseña' : 'Bienvenido a CALJIM') }}
                     </h2>
                     <p class="auth-subtitle" id="authSubtitle">
-                        {{ $modoInicial === 'registro' ? 'Registra tus datos para comenzar.' : 'Accede a tu espacio de trabajo.' }}
+                        {{ $modoInicial === 'registro' ? 'Registra tus datos para comenzar.' : ($modoInicial === 'recuperar' ? 'Verifica tu correo y teléfono para crear una nueva clave.' : 'Accede a tu espacio de trabajo.') }}
                     </p>
                 </div>
                 <button type="button" class="auth-close-btn" onclick="cerrarModal()" title="Cerrar">×</button>
             </div>
 
-            <!-- Selector de pestañas: Iniciar sesión | Crear cuenta -->
-            <div class="auth-tabs-wrap">
+            <!-- Selector de pestañas: Crear cuenta (izquierda) | Iniciar sesión (derecha) -->
+            <div class="auth-tabs-wrap" id="authTabsWrap">
                 <div class="auth-tabs">
-                    <button type="button" id="tabLogin" class="auth-tab-btn {{ $modoInicial === 'login' ? 'active' : '' }}" onclick="cambiarModo('login')">
-                        Iniciar sesión
-                    </button>
                     <button type="button" id="tabRegistro" class="auth-tab-btn {{ $modoInicial === 'registro' ? 'active' : '' }}" onclick="cambiarModo('registro')">
                         Crear cuenta
+                    </button>
+                    <button type="button" id="tabLogin" class="auth-tab-btn {{ $modoInicial === 'login' ? 'active' : '' }}" onclick="cambiarModo('login')">
+                        Iniciar sesión
                     </button>
                 </div>
             </div>
 
-            <!-- Mensajes de validación o error de credenciales -->
+            <!-- Mensajes de éxito, validación o error de credenciales -->
+            @if (session('auth_exito'))
+                <div class="auth-alert-success">
+                    {{ session('auth_exito') }}
+                </div>
+            @endif
+
             @if ($errors->any())
                 <div class="auth-alert-error">
                     {{ $errors->first() }}
@@ -503,7 +498,7 @@
             @endif
 
             <!-- FORMULARIO 1: INICIAR SESIÓN (Figma Node 58:1129) -->
-            <form id="formLogin" action="{{ route('login.post') }}" method="POST" class="auth-form {{ $modoInicial === 'registro' ? 'hidden' : '' }}">
+            <form id="formLogin" action="{{ route('login.post') }}" method="POST" class="auth-form {{ $modoInicial !== 'login' ? 'hidden' : '' }}">
                 @csrf
                 <div class="auth-field">
                     <label for="login_email" class="auth-label">Correo electrónico</label>
@@ -520,16 +515,26 @@
                 </div>
 
                 <div class="auth-field auth-field-spaced">
-                    <label for="login_password" class="auth-label">Contraseña</label>
-                    <input
-                        type="password"
-                        id="login_password"
-                        name="password"
-                        class="auth-input"
-                        placeholder="Tu contraseña"
-                        required
-                        autocomplete="current-password"
-                    >
+                    <div class="auth-label-row">
+                        <label for="login_password" class="auth-label">Contraseña</label>
+                        <button type="button" class="auth-forgot-link" onclick="cambiarModo('recuperar')">
+                            ¿Olvidaste tu contraseña?
+                        </button>
+                    </div>
+                    <div class="auth-input-wrap">
+                        <input
+                            type="password"
+                            id="login_password"
+                            name="password"
+                            class="auth-input has-toggle"
+                            placeholder="Tu contraseña"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <button type="button" class="auth-toggle-pass" onclick="togglePass('login_password', this)" aria-label="Mostrar u ocultar contraseña">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <button type="submit" class="auth-submit-btn">
@@ -539,7 +544,7 @@
             </form>
 
             <!-- FORMULARIO 2: CREAR CUENTA (Figma Node 58:1261) -->
-            <form id="formRegistro" action="{{ route('registro.post') }}" method="POST" class="auth-form {{ $modoInicial === 'login' ? 'hidden' : '' }}">
+            <form id="formRegistro" action="{{ route('registro.post') }}" method="POST" class="auth-form {{ $modoInicial !== 'registro' ? 'hidden' : '' }}">
                 @csrf
                 <div class="auth-grid-2col">
                     <div class="auth-field">
@@ -557,16 +562,14 @@
 
                     <div class="auth-field">
                         <label for="reg_rol" class="auth-label">Tipo de cuenta</label>
-                        <div class="auth-select-wrap">
-                            <select id="reg_rol" name="rol" class="auth-select" required>
-                                <option value="cliente" {{ old('rol') === 'cliente' ? 'selected' : '' }}>Cliente</option>
-                                <option value="operario" {{ old('rol') === 'operario' ? 'selected' : '' }}>Trabajador / Operario</option>
-                                <option value="admin" {{ old('rol') === 'admin' ? 'selected' : '' }}>Administrador</option>
-                            </select>
-                            <span class="auth-select-icon">
-                                <img src="{{ asset('img/chevron-down.svg') }}" width="10" height="6" alt="">
-                            </span>
-                        </div>
+                        <input
+                            type="text"
+                            id="reg_rol"
+                            class="auth-input"
+                            value="Cliente"
+                            readonly
+                            style="background-color: #f8fafc; color: #475569; cursor: not-allowed;"
+                        >
                     </div>
 
                     <div class="auth-field">
@@ -595,17 +598,82 @@
                         >
                     </div>
 
-                    <div class="auth-field auth-col-span-2">
+                    <div class="auth-field">
                         <label for="reg_password" class="auth-label">Crear contraseña</label>
-                        <input
-                            type="password"
-                            id="reg_password"
-                            name="password"
-                            class="auth-input"
-                            placeholder="Mínimo 6 caracteres"
-                            minlength="6"
-                            required
-                        >
+                        <div class="auth-input-wrap">
+                            <input
+                                type="password"
+                                id="reg_password"
+                                name="password"
+                                class="auth-input has-toggle"
+                                placeholder="Mínimo 8 caracteres"
+                                minlength="8"
+                                pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,}"
+                                title="Debe tener mínimo 8 caracteres, al menos una letra, un número y un carácter especial (ej. @$!%*?&.#_-)"
+                                oninput="evaluarFuerza(); verificarCoincidencia();"
+                                required
+                            >
+                            <button type="button" class="auth-toggle-pass" onclick="togglePass('reg_password', this)" aria-label="Mostrar u ocultar contraseña">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="reg_password_confirmation" class="auth-label">Confirmar contraseña</label>
+                        <div class="auth-input-wrap">
+                            <input
+                                type="password"
+                                id="reg_password_confirmation"
+                                name="password_confirmation"
+                                class="auth-input has-toggle"
+                                placeholder="Repite tu contraseña"
+                                minlength="8"
+                                oninput="verificarCoincidencia();"
+                                required
+                            >
+                            <button type="button" class="auth-toggle-pass" onclick="togglePass('reg_password_confirmation', this)" aria-label="Mostrar u ocultar contraseña">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <span id="passMatchMsg" class="pass-match-msg"></span>
+                    </div>
+
+                    <div class="auth-field auth-col-span-2">
+                        <div class="pass-strength-box">
+                            <div class="pass-strength-header">
+                                <span>Nivel de seguridad:</span>
+                                <span id="passStrengthLabel" class="pass-strength-label">Ingresa una contraseña</span>
+                            </div>
+                            <div class="pass-strength-bar">
+                                <div id="passStrengthFill" class="pass-strength-fill"></div>
+                            </div>
+                            <ul class="pass-rules-list">
+                                <li id="ruleLength" class="pass-rule-item">○ Mínimo 8 caracteres</li>
+                                <li id="ruleAlphaNum" class="pass-rule-item">○ Letras y números</li>
+                                <li id="ruleSpecial" class="pass-rule-item">○ Carácter especial (@$!%*?&.#_-)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="auth-field auth-col-span-2">
+                        <label for="reg_captcha" class="auth-label">Verificación de seguridad (CAPTCHA)</label>
+                        <div class="captcha-row">
+                            <div class="captcha-img-box">
+                                <img id="captchaImg" src="{{ route('captcha.svg') }}" alt="Código de verificación">
+                                <button type="button" class="captcha-refresh-btn" onclick="recargarCaptcha()" title="Generar otro código">↻</button>
+                            </div>
+                            <input
+                                type="text"
+                                id="reg_captcha"
+                                name="captcha"
+                                class="auth-input"
+                                placeholder="Escribe los 5 caracteres de la imagen"
+                                maxlength="5"
+                                autocomplete="off"
+                                required
+                            >
+                        </div>
                     </div>
                 </div>
 
@@ -619,41 +687,247 @@
                 </button>
             </form>
 
-            <!-- Separador VISTAS DE DEMOSTRACIÓN -->
-            <div class="auth-divider">
-                <div class="auth-divider-line"></div>
-                <span class="auth-divider-text">VISTAS DE DEMOSTRACIÓN</span>
-                <div class="auth-divider-line"></div>
-            </div>
+            <!-- FORMULARIO 3: RECUPERAR CONTRASEÑA (3 PASOS ESTILO GOOGLE) -->
+            <div id="formRecuperar" class="auth-form {{ $modoInicial !== 'recuperar' ? 'hidden' : '' }}">
+                @if($pasoRecuperar === 1)
+                    <!-- PASO 1: Menú estilo Google para elegir método -->
+                    @php
+                        $metodoRec = old('metodo', '');
+                        $tieneErrorPaso1 = $errors->has('email') || $errors->has('telefono') || $metodoRec !== '';
+                    @endphp
 
-            <!-- Caja de acceso rápido por roles (RBAC) -->
-            <div class="auth-demo-wrap">
-                <div class="auth-demo-box">
-                    <p class="auth-demo-title">Explora los paneles con información ficticia</p>
-                    <div class="auth-demo-grid">
-                        <a href="{{ route('login.demo', ['perfil' => 'admin1']) }}" class="auth-demo-pill">
-                            Admin · Perfil 1
-                        </a>
-                        <a href="{{ route('login.demo', ['perfil' => 'admin2']) }}" class="auth-demo-pill">
-                            Admin · Perfil 2
-                        </a>
-                        <a href="{{ route('login.demo', ['perfil' => 'trabajador']) }}" class="auth-demo-pill">
-                            Trabajador
-                        </a>
-                        <a href="{{ route('login.demo', ['perfil' => 'cliente']) }}" class="auth-demo-pill">
-                            Cliente
-                        </a>
+                    <div id="recMenuOpciones" class="{{ $tieneErrorPaso1 ? 'hidden' : '' }}">
+                        <p class="auth-label" style="margin-bottom:10px;">Elige cómo deseas verificar tu identidad:</p>
+                        <div class="rec-options-list">
+                            <button type="button" class="rec-option-btn" onclick="seleccionarMetodoRec('email')">
+                                <span class="rec-option-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                </span>
+                                <span>
+                                    <span class="rec-option-title">Obtener un código en tu correo electrónico</span>
+                                    <span class="rec-option-sub">Enviaremos un código de verificación de 6 dígitos</span>
+                                </span>
+                                <span class="rec-option-arrow">›</span>
+                            </button>
+
+                            <button type="button" class="rec-option-btn" onclick="seleccionarMetodoRec('telefono')">
+                                <span class="rec-option-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </span>
+                                <span>
+                                    <span class="rec-option-title">Obtener un código en tu número de celular</span>
+                                    <span class="rec-option-sub">Verificación mediante SMS al teléfono registrado</span>
+                                </span>
+                                <span class="rec-option-arrow">›</span>
+                            </button>
+                        </div>
                     </div>
+
+                    <form id="recInputForm" action="{{ route('password.code.post') }}" method="POST" class="{{ $tieneErrorPaso1 ? '' : 'hidden' }}">
+                        @csrf
+                        <input type="hidden" id="rec_metodo" name="metodo" value="{{ $metodoRec ?: 'email' }}">
+
+                        <div class="auth-field {{ $metodoRec === 'telefono' ? 'hidden' : '' }}" id="recWrapEmail">
+                            <label for="rec_email" class="auth-label">Correo electrónico registrado</label>
+                            <input
+                                type="email"
+                                id="rec_email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                class="auth-input"
+                                placeholder="Tu correo electrónico"
+                                {{ $metodoRec !== 'telefono' ? 'required' : 'disabled' }}
+                            >
+                        </div>
+
+                        <div class="auth-field {{ $metodoRec === 'telefono' ? '' : 'hidden' }}" id="recWrapTelefono">
+                            <label for="rec_telefono" class="auth-label">Número de celular registrado</label>
+                            <input
+                                type="text"
+                                id="rec_telefono"
+                                name="telefono"
+                                value="{{ old('telefono') }}"
+                                class="auth-input"
+                                placeholder="09XXXXXXXX"
+                                {{ $metodoRec === 'telefono' ? 'required' : 'disabled' }}
+                            >
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Enviar código de verificación</span>
+                            <span>↗</span>
+                        </button>
+
+                        <div class="auth-back-row">
+                            <button type="button" class="auth-forgot-link" onclick="volverMenuMetodos()">
+                                Probar otra forma de verificar
+                            </button>
+                        </div>
+                    </form>
+
+                @elseif($pasoRecuperar === 2)
+                    <!-- PASO 2: Ingresar el código de 6 dígitos -->
+                    <form action="{{ route('password.verify.post') }}" method="POST">
+                        @csrf
+                        <div class="auth-alert-success" style="margin-top:0; margin-bottom:16px; background:#edf2ff; border-color:#c7d2fe; color:#1e3a8a;">
+                            Enviamos un código de 6 dígitos a <strong>{{ $recDestino }}</strong>.
+                            @if($recCodigoDemo)
+                                <div style="margin-top:4px; font-size:12px;">
+                                    Código generado (entorno local): <strong style="font-size:14px; letter-spacing:2px;">{{ $recCodigoDemo }}</strong>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="rec_codigo" class="auth-label">Código de verificación (6 dígitos)</label>
+                            <input
+                                type="text"
+                                id="rec_codigo"
+                                name="codigo"
+                                class="auth-input"
+                                placeholder="Ej. 482915"
+                                maxlength="6"
+                                pattern="\d{6}"
+                                inputmode="numeric"
+                                autocomplete="one-time-code"
+                                required
+                            >
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Verificar código</span>
+                            <span>↗</span>
+                        </button>
+
+                        <div class="auth-back-row">
+                            <a href="{{ route('password.restart') }}" class="auth-forgot-link">
+                                ← Usar otro correo o celular
+                            </a>
+                        </div>
+                    </form>
+
+                @else
+                    <!-- PASO 3: Crear la nueva contraseña segura -->
+                    <form action="{{ route('password.reset.post') }}" method="POST">
+                        @csrf
+                        <div class="auth-alert-success" style="margin-top:0; margin-bottom:16px;">
+                            ✓ Identidad verificada para <strong>{{ $recDestino }}</strong>. Crea tu nueva contraseña.
+                        </div>
+
+                        <div class="auth-grid-2col">
+                            <div class="auth-field">
+                                <label for="rec_password" class="auth-label">Nueva contraseña</label>
+                                <div class="auth-input-wrap">
+                                    <input
+                                        type="password"
+                                        id="rec_password"
+                                        name="password"
+                                        class="auth-input has-toggle"
+                                        placeholder="Mínimo 8 caracteres"
+                                        minlength="8"
+                                        pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,}"
+                                        title="Debe tener mínimo 8 caracteres, al menos una letra, un número y un carácter especial"
+                                        oninput="evaluarFuerzaRecuperar(); verificarCoincidenciaRecuperar();"
+                                        required
+                                    >
+                                    <button type="button" class="auth-toggle-pass" onclick="togglePass('rec_password', this)" aria-label="Mostrar u ocultar contraseña">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="auth-field">
+                                <label for="rec_password_confirmation" class="auth-label">Confirmar contraseña</label>
+                                <div class="auth-input-wrap">
+                                    <input
+                                        type="password"
+                                        id="rec_password_confirmation"
+                                        name="password_confirmation"
+                                        class="auth-input has-toggle"
+                                        placeholder="Repite la nueva contraseña"
+                                        minlength="8"
+                                        oninput="verificarCoincidenciaRecuperar();"
+                                        required
+                                    >
+                                    <button type="button" class="auth-toggle-pass" onclick="togglePass('rec_password_confirmation', this)" aria-label="Mostrar u ocultar contraseña">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </button>
+                                </div>
+                                <span id="recMatchMsg" class="pass-match-msg"></span>
+                            </div>
+
+                            <div class="auth-field auth-col-span-2">
+                                <div class="pass-strength-box">
+                                    <div class="pass-strength-header">
+                                        <span>Nivel de seguridad:</span>
+                                        <span id="recStrengthLabel" class="pass-strength-label">Ingresa una contraseña</span>
+                                    </div>
+                                    <div class="pass-strength-bar">
+                                        <div id="recStrengthFill" class="pass-strength-fill"></div>
+                                    </div>
+                                    <ul class="pass-rules-list">
+                                        <li id="recRuleLength" class="pass-rule-item">○ Mínimo 8 caracteres</li>
+                                        <li id="recRuleAlphaNum" class="pass-rule-item">○ Letras y números</li>
+                                        <li id="recRuleSpecial" class="pass-rule-item">○ Carácter especial (@$!%*?&.#_-)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Actualizar contraseña</span>
+                            <span>↗</span>
+                        </button>
+                    </form>
+                @endif
+
+                <div class="auth-back-row">
+                    <button type="button" class="auth-forgot-link" onclick="cambiarModo('login')">
+                        ← Volver a Iniciar sesión
+                    </button>
                 </div>
             </div>
 
-            <p class="auth-footer-note">
-                Prototipo público con información ficticia. No uses contraseñas ni datos personales reales. Las cuentas y cambios solo se guardan en este navegador.
-            </p>
+            <!-- Sección inferior de Vistas de Demostración (oculta al recuperar contraseña) -->
+            <div id="authDemoSection" class="{{ $modoInicial === 'recuperar' ? 'hidden' : '' }}">
+                <!-- Separador VISTAS DE DEMOSTRACIÓN -->
+                <div class="auth-divider">
+                    <div class="auth-divider-line"></div>
+                    <span class="auth-divider-text">VISTAS DE DEMOSTRACIÓN</span>
+                    <div class="auth-divider-line"></div>
+                </div>
+
+                <!-- Caja de acceso rápido por roles (RBAC) -->
+                <div class="auth-demo-wrap">
+                    <div class="auth-demo-box">
+                        <p class="auth-demo-title">Explora los paneles con información ficticia</p>
+                        <div class="auth-demo-grid">
+                            <a href="{{ route('login.demo', ['perfil' => 'admin1']) }}" class="auth-demo-pill">
+                                Admin · Perfil 1
+                            </a>
+                            <a href="{{ route('login.demo', ['perfil' => 'admin2']) }}" class="auth-demo-pill">
+                                Admin · Perfil 2
+                            </a>
+                            <a href="{{ route('login.demo', ['perfil' => 'trabajador']) }}" class="auth-demo-pill">
+                                Trabajador
+                            </a>
+                            <a href="{{ route('login.demo', ['perfil' => 'cliente']) }}" class="auth-demo-pill">
+                                Cliente
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="auth-footer-note">
+                    Prototipo público con información ficticia. No uses contraseñas ni datos personales reales. Las cuentas y cambios solo se guardan en este navegador.
+                </p>
+            </div>
         </div>
     </div>
 
     <script>
+        let pasoRecuperarActivo = {{ $pasoRecuperar }};
+
         function abrirModal(modo) {
             const backdrop = document.getElementById('authModalBackdrop');
             backdrop.classList.remove('hidden');
@@ -663,6 +937,11 @@
         function cerrarModal() {
             const backdrop = document.getElementById('authModalBackdrop');
             backdrop.classList.add('hidden');
+            if (pasoRecuperarActivo > 1) {
+                fetch("{{ route('password.restart') }}?ajax=1").then(() => {
+                    pasoRecuperarActivo = 1;
+                });
+            }
         }
 
         function cerrarModalSiFondo(event) {
@@ -674,26 +953,226 @@
         function cambiarModo(modo) {
             const formLogin = document.getElementById('formLogin');
             const formRegistro = document.getElementById('formRegistro');
+            const formRecuperar = document.getElementById('formRecuperar');
             const tabLogin = document.getElementById('tabLogin');
             const tabRegistro = document.getElementById('tabRegistro');
+            const demoSection = document.getElementById('authDemoSection');
             const heading = document.getElementById('authHeading');
             const subtitle = document.getElementById('authSubtitle');
 
+            formLogin.classList.add('hidden');
+            formRegistro.classList.add('hidden');
+            formRecuperar.classList.add('hidden');
+            tabLogin.classList.remove('active');
+            tabRegistro.classList.remove('active');
+            if (demoSection) demoSection.classList.remove('hidden');
+
             if (modo === 'registro') {
-                formLogin.classList.add('hidden');
+                if (pasoRecuperarActivo > 1) {
+                    fetch("{{ route('password.restart') }}?ajax=1").then(() => { pasoRecuperarActivo = 1; });
+                }
                 formRegistro.classList.remove('hidden');
-                tabLogin.classList.remove('active');
                 tabRegistro.classList.add('active');
                 heading.textContent = 'Crea tu cuenta CALJIM';
                 subtitle.textContent = 'Registra tus datos para comenzar.';
+                recargarCaptcha();
+            } else if (modo === 'recuperar') {
+                if (pasoRecuperarActivo > 1 && formRecuperar.classList.contains('hidden')) {
+                    window.location.href = "{{ route('password.restart') }}";
+                    return;
+                }
+                formRecuperar.classList.remove('hidden');
+                if (demoSection) demoSection.classList.add('hidden');
+                tabLogin.classList.add('active');
+                heading.textContent = 'Recuperar contraseña';
+                subtitle.textContent = 'Verifica tu identidad para crear una nueva clave.';
             } else {
-                formRegistro.classList.add('hidden');
+                if (pasoRecuperarActivo > 1) {
+                    fetch("{{ route('password.restart') }}?ajax=1").then(() => { pasoRecuperarActivo = 1; });
+                }
                 formLogin.classList.remove('hidden');
-                tabRegistro.classList.remove('active');
                 tabLogin.classList.add('active');
                 heading.textContent = 'Bienvenido a CALJIM';
                 subtitle.textContent = 'Accede a tu espacio de trabajo.';
             }
+        }
+
+        const svgOjoAbierto = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+        const svgOjoCerrado = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+
+        function togglePass(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerHTML = svgOjoCerrado;
+            } else {
+                input.type = 'password';
+                btn.innerHTML = svgOjoAbierto;
+            }
+        }
+
+        function evaluarFuerzaPassword(inputId, fillId, labelId, ruleLenId, ruleAlphaNumId, ruleSpecialId) {
+            const pass = document.getElementById(inputId).value;
+            const fill = document.getElementById(fillId);
+            const label = document.getElementById(labelId);
+            const ruleLen = document.getElementById(ruleLenId);
+            const ruleAlphaNum = document.getElementById(ruleAlphaNumId);
+            const ruleSpecial = document.getElementById(ruleSpecialId);
+
+            const tieneLen = pass.length >= 8;
+            const tieneLetra = /[a-zA-Z]/.test(pass);
+            const tieneNumero = /[0-9]/.test(pass);
+            const tieneAlphaNum = tieneLetra && tieneNumero;
+            const tieneEspecial = /[^a-zA-Z0-9\s]/.test(pass);
+
+            ruleLen.className = 'pass-rule-item' + (tieneLen ? ' ok' : '');
+            ruleLen.textContent = (tieneLen ? '✓ ' : '○ ') + 'Mínimo 8 caracteres';
+
+            ruleAlphaNum.className = 'pass-rule-item' + (tieneAlphaNum ? ' ok' : '');
+            ruleAlphaNum.textContent = (tieneAlphaNum ? '✓ ' : '○ ') + 'Letras y números';
+
+            ruleSpecial.className = 'pass-rule-item' + (tieneEspecial ? ' ok' : '');
+            ruleSpecial.textContent = (tieneEspecial ? '✓ ' : '○ ') + 'Carácter especial (@$!%*?&.#_-)';
+
+            fill.className = 'pass-strength-fill';
+            label.className = 'pass-strength-label';
+
+            if (pass.length === 0) {
+                label.textContent = 'Ingresa una contraseña';
+                return;
+            }
+
+            let puntaje = 0;
+            if (tieneLen) puntaje++;
+            if (tieneAlphaNum) puntaje++;
+            if (tieneEspecial) puntaje++;
+
+            if (puntaje <= 1 || !tieneLen) {
+                fill.classList.add('debil');
+                label.classList.add('debil');
+                label.textContent = 'Débil';
+            } else if (puntaje === 2) {
+                fill.classList.add('media');
+                label.classList.add('media');
+                label.textContent = 'Media';
+            } else {
+                fill.classList.add('fuerte');
+                label.classList.add('fuerte');
+                label.textContent = 'Segura';
+            }
+        }
+
+        function evaluarFuerza() {
+            evaluarFuerzaPassword('reg_password', 'passStrengthFill', 'passStrengthLabel', 'ruleLength', 'ruleAlphaNum', 'ruleSpecial');
+        }
+
+        function evaluarFuerzaRecuperar() {
+            evaluarFuerzaPassword('rec_password', 'recStrengthFill', 'recStrengthLabel', 'recRuleLength', 'recRuleAlphaNum', 'recRuleSpecial');
+        }
+
+        function verificarCoincidencia() {
+            const p1 = document.getElementById('reg_password').value;
+            const p2Input = document.getElementById('reg_password_confirmation');
+            const p2 = p2Input.value;
+            const msg = document.getElementById('passMatchMsg');
+
+            if (p2.length === 0) {
+                msg.textContent = '';
+                msg.className = 'pass-match-msg';
+                p2Input.setCustomValidity('');
+                return;
+            }
+
+            if (p1 === p2) {
+                msg.textContent = '✓ Las contraseñas coinciden';
+                msg.className = 'pass-match-msg ok';
+                p2Input.setCustomValidity('');
+            } else {
+                msg.textContent = '✕ Las contraseñas no coinciden';
+                msg.className = 'pass-match-msg err';
+                p2Input.setCustomValidity('Las contraseñas no coinciden.');
+            }
+        }
+
+        function seleccionarMetodoRec(metodo) {
+            const menu = document.getElementById('recMenuOpciones');
+            const form = document.getElementById('recInputForm');
+            const hiddenMetodo = document.getElementById('rec_metodo');
+            const wrapEmail = document.getElementById('recWrapEmail');
+            const wrapTel = document.getElementById('recWrapTelefono');
+            const inputEmail = document.getElementById('rec_email');
+            const inputTel = document.getElementById('rec_telefono');
+
+            if (!menu || !form) return;
+
+            menu.classList.add('hidden');
+            form.classList.remove('hidden');
+            hiddenMetodo.value = metodo;
+
+            if (metodo === 'telefono') {
+                wrapEmail.classList.add('hidden');
+                inputEmail.disabled = true;
+                inputEmail.required = false;
+
+                wrapTel.classList.remove('hidden');
+                inputTel.disabled = false;
+                inputTel.required = true;
+                inputTel.focus();
+            } else {
+                wrapTel.classList.add('hidden');
+                inputTel.disabled = true;
+                inputTel.required = false;
+
+                wrapEmail.classList.remove('hidden');
+                inputEmail.disabled = false;
+                inputEmail.required = true;
+                inputEmail.focus();
+            }
+        }
+
+        function volverMenuMetodos() {
+            const menu = document.getElementById('recMenuOpciones');
+            const form = document.getElementById('recInputForm');
+            if (menu && form) {
+                form.classList.add('hidden');
+                menu.classList.remove('hidden');
+            }
+        }
+
+        function verificarCoincidenciaRecuperar() {
+            const p1 = document.getElementById('rec_password').value;
+            const p2Input = document.getElementById('rec_password_confirmation');
+            const p2 = p2Input.value;
+            const msg = document.getElementById('recMatchMsg');
+
+            if (p2.length === 0) {
+                msg.textContent = '';
+                msg.className = 'pass-match-msg';
+                p2Input.setCustomValidity('');
+                return;
+            }
+
+            if (p1 === p2) {
+                msg.textContent = '✓ Las contraseñas coinciden';
+                msg.className = 'pass-match-msg ok';
+                p2Input.setCustomValidity('');
+            } else {
+                msg.textContent = '✕ Las contraseñas no coinciden';
+                msg.className = 'pass-match-msg err';
+                p2Input.setCustomValidity('Las contraseñas no coinciden.');
+            }
+        }
+
+        function recargarCaptcha() {
+            const ts = Date.now();
+            const img = document.getElementById('captchaImg');
+            const imgRec = document.getElementById('captchaImgRec');
+            if (img) img.src = "{{ route('captcha.svg') }}?t=" + ts;
+            if (imgRec) imgRec.src = "{{ route('captcha.svg') }}?t=" + ts;
+            const cap1 = document.getElementById('reg_captcha');
+            const cap2 = document.getElementById('rec_captcha');
+            if (cap1) cap1.value = '';
+            if (cap2) cap2.value = '';
         }
     </script>
 </body>

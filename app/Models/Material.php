@@ -9,22 +9,23 @@ class Material extends Model
     protected $table = 'materiales';
 
     protected $fillable = [
+        'codigo',
         'nombre',
-        'unidad',
+        'descripcion',
+        'imagen_url',
         'precio_m3',
         'stock_m3',
+        'stock_minimo_m3',
+        'disponible',
     ];
 
-    /**
-     * Datos iniciales de demostración para el Hola Mundo MVC (RF-01, RF-02)
-     */
-    public static function catalogoDemo(): array
+    protected function casts(): array
     {
         return [
-            ['codigo' => 'AR-01', 'nombre' => 'Arena Lavada Fina', 'precio_m3' => 14.50, 'stock_m3' => 320, 'estado' => 'Disponible'],
-            ['codigo' => 'AR-02', 'nombre' => 'Ripio Triturado 3/4"', 'precio_m3' => 16.00, 'stock_m3' => 210, 'estado' => 'Disponible'],
-            ['codigo' => 'AR-03', 'nombre' => 'Sub-base Vial Clase 1', 'precio_m3' => 12.75, 'stock_m3' => 450, 'estado' => 'Disponible'],
+            'precio_m3' => 'decimal:2',
+            'stock_m3' => 'decimal:2',
+            'stock_minimo_m3' => 'decimal:2',
+            'disponible' => 'boolean',
         ];
     }
 }
-
